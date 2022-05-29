@@ -3,6 +3,8 @@ package Module1;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -18,6 +20,7 @@ public class TextEditor implements ActionListener {
 	JButton load = new JButton();
 	JTextArea textArea = new JTextArea(50, 50);
 	FileWriter fw;
+	BufferedReader br;
 	
 	TextEditor(){
 		frame.add(panel);
@@ -51,6 +54,20 @@ public class TextEditor implements ActionListener {
 			
 		}
 		else {
+			try {
+				
+				br = new BufferedReader(new FileReader("src/Module1/editableText.txt"));
+				String txtText = " ";
+				
+				while(txtText!=null) {
+					txtText += br.readLine() + "\n";
+				}
+				textArea.setText(txtText);
+			}
+			catch(IOException e1) {
+				System.out.println("Oh friggin heck");
+				e1.printStackTrace();
+			}
 			
 		}
 	}
