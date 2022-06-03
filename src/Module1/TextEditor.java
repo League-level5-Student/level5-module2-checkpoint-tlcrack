@@ -57,11 +57,19 @@ public class TextEditor implements ActionListener {
 			try {
 				
 				br = new BufferedReader(new FileReader("src/Module1/editableText.txt"));
-				String txtText = " ";
-				
-				while(txtText!=null) {
-					txtText += br.readLine() + "\n";
+				String txtText = "";
+				String middleMan = " ";
+				while(true) {
+					middleMan = br.readLine();
+					if(middleMan!=null) {
+					txtText+=middleMan + "\n";
+					System.out.print(middleMan);
+					}
+					else {
+						break;
+					}
 				}
+				br.close();
 				textArea.setText(txtText);
 			}
 			catch(IOException e1) {
